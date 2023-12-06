@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2>Search Results</h2>
+    {% if flights %}
+        <ul>
+            {% for flight in flights %}
+                <li>{{ flight.flight_number }} from {{ flight.departure_airport }} to {{ flight.arrival_airport }} on {{ flight.departure_date }}</li>
+                <!-- More details -->
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No flights found.</p>
+    {% endif %}
+{% endblock %}
