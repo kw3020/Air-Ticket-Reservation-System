@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2>My Upcoming Flights</h2>
+    {% if upcoming_flights %}
+        <ul>
+            {% for flight in upcoming_flights %}
+                <li>
+                    Flight Number: {{ flight.flight_number }}<br>
+                    Departure: {{ flight.departure_airport_code }} at {{ flight.departure_date_and_time }}<br>
+                    Arrival: {{ flight.arrival_airport_code }} at {{ flight.arrival_date_and_time }}<br>
+                    Status: {{ flight.status }}<br>
+                    <a href="{{ url_for('cancel_trip', ticket_id=flight.ticket_ID) }}">Cancel Flight</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No upcoming flights found.</p>
+    {% endif %}
+
+    <h2>My Previous Flights</h2>
+    {% if past_flights %}
+        <ul>
+            {% for flight in past_flights %}
+                <li>
+                    Flight Number: {{ flight.flight_number }}<br>
+                    Departure: {{ flight.departure_airport_code }} at {{ flight.departure_date_and_time }}<br>
+                    Arrival: {{ flight.arrival_airport_code }} at {{ flight.arrival_date_and_time }}<br>
+                    <a href="{{ url_for('leave_comment', flight_number=flight.flight_number, departure_date_and_time=flight.departure_date_and_time) }}">Leave Comment & Rating</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No previous flights found.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2>Flight Status Results</h2>
+    {% if flight_status %}
+        <ul>
+            {% for flight in flight_status %}
+                <li>{{ flight.flight_number }} - {{ flight.airline_name }}: Status: {{ flight.status }} on {{ flight.departure_date_and_time }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No flight status found.</p>
+    {% endif %}
+{% endblock %}

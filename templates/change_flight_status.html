@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Change Status for Flight {{ flight_number }}</h2>
+<form action="{{ url_for('change_flight_status', flight_number=flight_number) }}" method="post">
+    <select name="status" required>
+        <option value="on-time">On-Time</option>
+        <option value="delayed">Delayed</option>
+        <!-- Add other statuses as needed -->
+    </select>
+    <button type="submit">Update Status</button>
+</form>
+{% endblock %}

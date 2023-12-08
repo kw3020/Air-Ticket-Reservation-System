@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Purchase Confirmation</h2>
+<p>Your ticket has been successfully purchased. Your Ticket ID is: {{ ticket_id }}</p>
+<a href="{{ url_for('customer_homepage') }}" class="btn">Return to Dashboard</a>
+{% endblock %}

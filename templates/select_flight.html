@@ -1,0 +1,21 @@
+<!-- select_flight.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2>Select a Flight to Purchase</h2>
+    {% if flights %}
+        <ul>
+            {% for flight in flights %}
+                <li>
+                    Flight Number: {{ flight.flight_number }} <br>
+                    Departure: {{ flight.departure_airport_code }} - {{ flight.departure_date_and_time }} <br>
+                    Arrival: {{ flight.arrival_airport_code }} - {{ flight.arrival_date_and_time }} <br>
+                    Price: ${{ flight.base_price }} <br>
+                    <a href="{{ url_for('purchase_ticket', flight_number=flight.flight_number) }}">Purchase Ticket</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No available flights.</p>
+    {% endif %}
+{% endblock %}

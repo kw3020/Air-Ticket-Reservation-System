@@ -3,6 +3,8 @@
 <head>
     <title>Air Ticket Reservation System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <header>
@@ -10,17 +12,35 @@
             <ul>
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('search_flights') }}">Search Flights</a></li>
+                <li><a href="{{ url_for('search_flight_status') }}">Flight Status</a></li>
                 {% if session.get('logged_in') %}
-                    <li><a href="{{ url_for('protected') }}">My Account</a></li>
+                    {% if session.get('user_type') == 'customer' %}
+                        <li><a href="{{ url_for('customer_homepage') }}">My Dashboard</a></li>
+                        <!-- Additional customer-specific links -->
+                    {% elif session.get('user_type') == 'staff' %}
+                        <li><a href="{{ url_for('staff_homepage') }}">Staff Dashboard</a></li>
+                        <!-- Additional staff-specific links -->
+                    {% endif %}
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register_customer') }}">Register as Customer</a></li>
+                    <li><a href="{{ url_for('register_staff') }}">Register as Airline Staff</a></li>
                 {% endif %}
             </ul>
         </nav>
     </header>
 
     <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         {% block content %}
         {% endblock %}
     </main>
@@ -30,4 +50,3 @@
     </footer>
 </body>
 </html>
-

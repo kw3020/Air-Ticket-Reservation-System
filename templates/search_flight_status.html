@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2>Search Flight Status</h2>
+    <form action="{{ url_for('search_flight_status') }}" method="post">
+        <label for="airline_name">Airline Name:</label>
+        <input type="text" id="airline_name" name="airline_name">
+
+        <label for="flight_number">Flight Number:</label>
+        <input type="text" id="flight_number" name="flight_number">
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+
+        <button type="submit">Search</button>
+    </form>
+{% endblock %}

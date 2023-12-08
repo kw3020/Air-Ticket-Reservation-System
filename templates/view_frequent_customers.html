@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Frequent Customers in the Last Year</h2>
+<ul>
+    {% for customer in customers %}
+        <li>
+            Email: {{ customer.email }} - Flights: {{ customer.flight_count }}
+            <a href="{{ url_for('view_customer_flights', email=customer.email) }}">View Flights</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

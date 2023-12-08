@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>View Flights</h2>
+<form action="{{ url_for('view_flights') }}" method="post">
+    <!-- Form fields for date range, source, destination -->
+    <input type="date" name="start_date" required>
+    <input type="date" name="end_date" required>
+    <input type="text" name="source" placeholder="Source Airport Code">
+    <input type="text" name="destination" placeholder="Destination Airport Code">
+    <button type="submit">Filter Flights</button>
+</form>
+
+{% if flights %}
+    <ul>
+        {% for flight in flights %}
+            <li>
+                Flight Number: {{ flight.flight_number }} <br>
+                Departure: {{ flight.departure_airport_code }} - {{ flight.departure_date_and_time }} <br>
+                Arrival: {{ flight.arrival_airport_code }} - {{ flight.arrival_date_and_time }}
+                <!-- Link to view customers and comments of the flight -->
+                <a href="{{ url_for('view_customers', flight_number=flight.flight_number) }}">View Customers</a>
+                <a href="{{ url_for('view_comments', flight_number=flight.flight_number) }}">View Comments and Reviews</a>
+
+                <!-- Dropdown for changing flight status -->
+                <form action="{{ url_for('change_flight_status', flight_number=flight.flight_number) }}" method="post">
+                    <select name="status">
+                        <option value="on-time" {% if flight.status == 'on-time' %} selected {% endif %}>On-Time</option>
+                        <option value="delayed" {% if flight.status == 'delayed' %} selected {% endif %}>Delayed</option>
+                    </select>
+                    <button type="submit">Update Status</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No flights found.</p>
+{% endif %}
+{% endblock %}

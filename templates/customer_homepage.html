@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Welcome, {{ session['user_email'] }}</h1>
+    <div><a href="{{ url_for('view_my_flights') }}">View My Flights</a></div>
+    <div><a href="{{ url_for('select_flight_to_purchase') }}">Purchase Ticket</a></div>
+    <div><a href="{{ url_for('track_spending') }}">Track My Spending</a></div>
+    <!-- Other links or forms for customer functionalities -->
+{% endblock %}

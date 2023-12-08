@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Flight History for {{ customer_email }}</h2>
+<!-- Back Button -->
+<div><a href="{{ url_for('view_frequent_customers') }}" class="btn">Back to Frequent Customers</a></div>
+
+{% if flights %}
+    <ul>
+        {% for flight in flights %}
+            <li>
+                Flight Number: {{ flight.flight_number }}<br>
+                Departure: {{ flight.departure_airport_code }} - {{ flight.departure_date_and_time }}<br>
+                Arrival: {{ flight.arrival_airport_code }} - {{ flight.arrival_date_and_time }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No flights found for this customer.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Schedule Maintenance</h2>
+<form action="{{ url_for('schedule_maintenance') }}" method="post">
+    <label for="airplane_id">Airplane ID:</label>
+    <input type="text" id="airplane_id" name="airplane_id" required><br>
+
+    <label for="start_date_and_time">Start Date and Time:</label>
+    <input type="datetime-local" id="start_date_and_time" name="start_date_and_time" required><br>
+
+    <label for="end_date_and_time">End Date and Time:</label>
+    <input type="datetime-local" id="end_date_and_time" name="end_date_and_time" required><br>
+
+    <button type="submit">Schedule Maintenance</button>
+</form>
+{% endblock %}

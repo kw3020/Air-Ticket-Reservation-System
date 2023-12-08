@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2>Airplanes Owned by {{ session['user_airline'] }}</h2>
+    <ul>
+        {% for airplane in airplanes %}
+            <li>
+                ID: {{ airplane.airplane_id }}<br>
+                Number of Seats: {{ airplane.number_of_seats }}<br>
+                Manufacturing Company: {{ airplane.manufacturing_company }}<br>
+                Model Number: {{ airplane.model_number }}<br>
+                Manufacturing Date: {{ airplane.manufacturing_date | date: "%Y-%m-%d" }}<br>
+                Age: {{ airplane.age }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

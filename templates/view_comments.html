@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Comments for Flight {{ flight_number }}</h2>
+{% if comments %}
+    <ul>
+        {% for comment in comments %}
+            <li>
+                Customer Email: {{ comment.email }} <br>
+                Rating: {{ comment.rating }} <br>
+                Comment: {{ comment.comment }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments found for this flight.</p>
+{% endif %}
+{% endblock %}

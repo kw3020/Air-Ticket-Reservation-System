@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Track My Spending</h1>
+    <p>Total Spending (Last Year): {{ total_spending }}</p>
+    <h2>Month-wise Breakdown</h2>
+    
+    <!-- Canvas for Chart.js -->
+    <canvas id="spendingChart" width="400" height="400"></canvas>
+
+    <h2>Custom Date Range</h2>
+    <form action="{{ url_for('track_spending') }}" method="post">
+        <input type="date" name="start_date" required>
+        <input type="date" name="end_date" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if custom_spending %}
+        <p>Total Spending (Custom Range): {{ custom_spending }}</p>
+    {% endif %}
+
+    <!-- Chart.js Script -->
+    <script>
+        var months = {{ months | safe }};
+        var spendingData = {{ spending_values | safe }};
+        var spendingChart = new Chart(document.getElementById('spendingChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Spending',
+                    data: spendingData,
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
+{% endblock %}

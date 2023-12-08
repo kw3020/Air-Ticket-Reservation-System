@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Add New Airport</h2>
+<form action="{{ url_for('add_airport') }}" method="post">
+    <label for="code">Airport Code:</label>
+    <input type="text" id="code" name="code" required><br>
+
+    <label for="name">Airport Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required><br>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" required><br>
+
+    <label for="number_of_terminals">Number of Terminals:</label>
+    <input type="number" id="number_of_terminals" name="number_of_terminals" required><br>
+
+    <label for="airport_type">Airport Type:</label>
+    <select id="airport_type" name="airport_type">
+        <option value="domestic">Domestic</option>
+        <option value="international">International</option>
+        <option value="both">Both</option>
+    </select><br>
+
+    <button type="submit">Add Airport</button>
+</form>
+{% endblock %}

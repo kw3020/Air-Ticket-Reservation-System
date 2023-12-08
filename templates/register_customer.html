@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2>Register as Customer</h2>
+    <form action="{{ url_for('register_customer') }}" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <!-- Address Fields -->
+        <label for="building_number">Building Number:</label>
+        <input type="text" id="building_number" name="building_number">
+
+        <label for="street_name">Street Name:</label>
+        <input type="text" id="street_name" name="street_name">
+
+        <label for="apartment_number">Apartment Number:</label>
+        <input type="text" id="apartment_number" name="apartment_number">
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city">
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state">
+
+        <label for="zip_code">Zip Code:</label>
+        <input type="text" id="zip_code" name="zip_code">
+
+        <!-- Additional Fields -->
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number">
+
+        <label for="passport_number">Passport Number:</label>
+        <input type="text" id="passport_number" name="passport_number">
+
+        <label for="passport_expiration">Passport Expiration:</label>
+        <input type="date" id="passport_expiration" name="passport_expiration">
+
+        <label for="passport_country">Passport Country:</label>
+        <input type="text" id="passport_country" name="passport_country">
+
+        <label for="date_of_birth">Date of Birth:</label>
+        <input type="date" id="date_of_birth" name="date_of_birth">
+
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Purchase Ticket for Flight {{ flight_number }}</h2>
+<form action="{{ url_for('purchase_ticket', flight_number=flight_number) }}" method="post">
+    <label for="card_type">Card Type:</label>
+    <select id="card_type" name="card_type">
+        <option value="credit">Credit Card</option>
+        <option value="debit">Debit Card</option>
+    </select><br>
+    
+    <label for="card_number">Card Number:</label>
+    <input type="text" id="card_number" name="card_number" required><br>
+    
+    <label for="name_on_card">Name on Card:</label>
+    <input type="text" id="name_on_card" name="name_on_card" required><br>
+    
+    <label for="expiration_date">Expiration Date:</label>
+    <input type="date" id="expiration_date" name="expiration_date" required><br>
+    
+    <button type="submit">Complete Purchase</button>
+</form>
+{% endblock %}
